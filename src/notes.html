@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/output.css" rel="stylesheet" />
+    <title>Notes</title>
+  </head>
+  <body
+    class="flex flex-col justify-center items-center h-screen p-8 gap-8 bg-gray-100"
+  >
+    <!-- Container -->
+    <div
+      class="grid grid-cols-2 gap-8 bg-gray-100 px-8 py-16 w-screen h-screen"
+      id="reading-list-container"
+    >
+      <!-- Left container -->
+      <div
+        class="flex-flex-col max-h- items-start gap-8 overflow-y-scroll pr-8"
+        id="left-container"
+      >
+        <!-- Notes and plus button -->
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-5xl font-bold">Notes</h1>
+          <button
+            class="w-12 h-12 hover:bg-gray-200 flex justify-center items-center rounded-lg"
+            id="plus-button"
+            onclick="createNewNote()"
+          >
+            <img class="h-8 w-8" src="../assets/plus.svg" alt="plus" />
+          </button>
+        </div>
+
+        <!-- Fill the loop here -->
+        <!-- Looped -->
+
+        <!-- <div
+          class="flex flex-col gap-8 border-b w-full bg-white p-6 rounded-xl shadow-lg mt-8"
+        >
+          <div class="flex justify-between">
+            <div class="flex flex-col gap-2 truncate mr-6">
+              <h2 class="text-2xl font-bold mb-3">Title</h2>
+              <p class="text-gray-600">Content</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                class="bg-gray-200 hover:bg-indigo-600 hover:shadow-md rounded-md p-1 w-20 h-full flex justify-center items-center font-bold text-white"
+                id="login-button"
+              >
+                <img class="h-10" src="../assets/writing.svg" alt="" />
+              </button>
+              <button
+                class="bg-gray-200 hover:bg-red-500 hover:shadow-md rounded-md p-1 w-20 h-full flex justify-center items-center"
+                id="login-button"
+              >
+                <img class="h-10" src="../assets/garbage.svg" alt="garbage" />
+              </button>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Looped -->
+      </div>
+      <!-- Left conainer end -->
+      <!-- Notes Preview -->
+      <!-- Right Container -->
+      <div class="h-full">
+        <div
+          class="bg-white h-full w-full flex flex-col rounded-xl p-8 shadow-lg"
+        >
+          <h3 class="text-4xl font-bold mb-4 w-full border-b pb-6">
+            My Notes Test
+          </h3>
+          <p class="text-gray-600">
+            Lorem Ipsum is simply dummy text of the printing and typesetting.
+          </p>
+        </div>
+      </div>
+      <!-- Right Container end -->
+    </div>
+    <script src="./notes.js"></script>
+  </body>
+</html>
