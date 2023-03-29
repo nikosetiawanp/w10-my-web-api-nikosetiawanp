@@ -1,12 +1,14 @@
 let API_ENDPOINT = "https://641eb708ad55ae01ccae9e69.mockapi.io/user";
 let registerName = document.getElementById("register-name");
+let registerEmail = document.getElementById("register-email");
+let registerPassword = document.getElementById("register-password");
+let registerError = document.getElementById("register-error");
+let registerButton = document.getElementById("register-button");
+
 let numberRegex = /\d/;
 let symbolRegex = /(?=.*?[^\w\s])/;
-let registerEmail = document.getElementById("register-email");
-let registerError = document.getElementById("register-error");
 let emailRegex =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-let registerButton = document.getElementById("register-button");
 
 // REGISTER
 let checkRegisterName = () => {
@@ -77,6 +79,23 @@ let checkRegisterPassword = () => {
   }
 };
 
+let createNewUser = () => {
+  fetch(API_ENDPOINT, {
+    method: "POST",
+    body: JSON.stringify({
+      email: `${registerEmail.value}`,
+      password: `${registerPassword.value}`,
+      name: `${registerName.value}`,
+      id: ``,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((user) => console.log(user));
+};
+
 let checkEmailExist = () => {
   fetch(API_ENDPOINT)
     .then((response) => response.json())
@@ -88,6 +107,7 @@ let checkEmailExist = () => {
         registerEmail.classList.replace("border-gray-200", "border-red-500");
         registerError.innerHTML = "Email already exist";
       } else {
+        createNewUser();
         alert("Register successful! Redirecting soon...");
         window.location.href = "./login.html";
       }
@@ -96,10 +116,6 @@ let checkEmailExist = () => {
 
 // VALIDATE REGISTER
 let validateRegister = (e) => {
-  let registerName = document.getElementById("register-name");
-  let registerPassword = document.getElementById("register-password");
-  let registerEmail = document.getElementById("register-email");
-  let registerButton = document.getElementById("register-button");
   e.preventDefault();
 
   if (
