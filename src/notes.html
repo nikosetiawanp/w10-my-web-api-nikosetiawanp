@@ -5,32 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../dist.scrollbar.css" />
     <title>Notes</title>
   </head>
   <body
-    class="flex flex-col justify-center items-center h-screen p-8 gap-8 bg-gray-100"
+    class="flex flex-col justify-center items-center h-screen gap-8 bg-gray-100"
+    onload="showAllNote()"
   >
     <!-- Container -->
     <div
-      class="grid grid-cols-2 gap-8 bg-gray-100 px-8 py-16 w-screen h-screen"
+      class="grid grid-cols-2 gap-8 bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-16 w-full h-full"
       id="reading-list-container"
     >
       <!-- Left container -->
       <div
-        class="flex-flex-col max-h- items-start gap-8 overflow-y-scroll pr-8"
+        class="flex-flex-col max-h- items-start gap-8 overflow-y-scroll scrollbar-hide"
+        style="scrollbar-width: none"
         id="left-container"
       >
         <!-- Notes and plus button -->
-        <div class="flex justify-between items-center mb-8">
-          <h1 class="text-5xl font-bold">Notes</h1>
+        <div class="flex justify-between items-center mb-4">
+          <h1 class="text-8xl text-white font-bold">Notes</h1>
           <button
-            class="w-12 h-12 hover:bg-gray-200 flex justify-center items-center rounded-lg"
+            class="w-12 h-12 hover:backdrop-blur-sm hover:bg-white/20 hover:shadow-md active:shadow-none flex justify-center items-center rounded-lg"
             id="plus-button"
             onclick="createNewNote()"
           >
             <img class="h-8 w-8" src="../assets/plus.svg" alt="plus" />
           </button>
         </div>
+        <div
+          class="hidden-flex-col h-full items-center justify-center overflow-y-scroll scrollbar-hide"
+          id="notes-container"
+        ></div>
 
         <!-- Fill the loop here -->
         <!-- Looped -->
@@ -63,18 +70,33 @@
         <!-- Looped -->
       </div>
       <!-- Left conainer end -->
-      <!-- Notes Preview -->
+
       <!-- Right Container -->
       <div class="h-full">
+        <!-- Glass background -->
         <div
-          class="bg-white h-full w-full flex flex-col rounded-xl p-8 shadow-lg"
+          class="bg-white/20 backdrop-blur-md h-full w-full flex flex-col rounded-xl p-16 shadow-lg"
         >
-          <h3 class="text-4xl font-bold mb-4 w-full border-b pb-6">
-            My Notes Test
-          </h3>
-          <p class="text-gray-600">
-            Lorem Ipsum is simply dummy text of the printing and typesetting.
-          </p>
+          <input
+            class="outline-none text-4xl font-bold mb-4 pb-4 pt-4 w-full border-b text-white bg-white/0 placeholder:text-4xl placeholder:text-white/70 placeholder:font-bold"
+            type="text"
+            id="title-input"
+            placeholder="New Note"
+            onfocus="hideTitlePlaceholder()"
+          />
+          <textarea
+            class="outline-none resize-none h-full bg-white/0 text-white font-medium placeholder:text-white/70"
+            id="textarea-input"
+            cols="30"
+            rows="10"
+            placeholder="What's on your mind?"
+            onfocus="hideTextareaPlaceholder()"
+          ></textarea>
+          <button
+            class="w-full bg-white/20 hover:bg-white/30 hover:shadow-md h-14 rounded-lg text-white font-bold"
+          >
+            Save Note
+          </button>
         </div>
       </div>
       <!-- Right Container end -->
@@ -82,3 +104,5 @@
     <script src="./notes.js"></script>
   </body>
 </html>
+
+<!-- <img src="../assets/writing.svg" alt="" /> -->

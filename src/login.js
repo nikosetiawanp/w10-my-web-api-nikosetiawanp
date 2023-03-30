@@ -34,7 +34,9 @@ let checkUserExist = () => {
   fetch(API_ENDPOINT)
     .then((response) => response.json())
     .then((user) => {
-      let registeredEmail = user.find((e) => e.email === loginEmail.value);
+      let registeredEmail = user.find(
+        (e) => e.email.toLowerCase() === loginEmail.value.toLowerCase()
+      );
       let registeredPassword = user.find(
         (e) => e.password === loginPassword.value
       );
