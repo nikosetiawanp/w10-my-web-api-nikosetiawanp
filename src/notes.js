@@ -72,8 +72,6 @@ const createNewNote = () => {
     .then((response) => response.json())
     .then((note) => showAllNote());
 };
-
-// CANNOT UPDATE THE MOCKAPI SIDE
 let deleteNote = (e) => {
   const noteId = e.getAttribute("noteid");
   e.parentElement.parentElement.remove();
@@ -88,44 +86,37 @@ let editNote = (e) => {
   const noteId = e.getAttribute("noteid");
   let titleInput = document.getElementById("title-input");
   let textAreaInput = document.getElementById("textarea-input");
+  let selectedId = document.getElementById("selectedId");
+
   fetch(API_ENDPOINT + "/" + noteId)
     .then((response) => response.json())
     .then((note) => {
-      console.log(note.title);
       titleInput.value = `${note.title}`;
-      textAreaInput.textContent = `${note.content}`;
+      textAreaInput.value = `${note.content}`;
+      selectedId.innerHTML = note.id;
+      console.log(selectedId.innerHTML);
     });
 };
 
-let hideTitlePlaceholder = () => {
-  let titleInput = document.getElementById("title-input");
-  titleInput.classList.replace(
-    "placeholder:text-white/70",
-    "placeholder:text-white/0"
-  );
-};
-let hideTextareaPlaceholder = () => {
-  let textAreaInput = document.getElementById("textarea-input");
-  textAreaInput.classList.replace(
-    "placeholder:text-white/70",
-    "placeholder:text-white/0"
-  );
-};
-let unhidePlaceholder = () => {
+const updateNote = () => {
   let titleInput = document.getElementById("title-input");
   let textAreaInput = document.getElementById("textarea-input");
-  titleInput.classList.replace(
-    "placeholder:text-white/0",
-    "placeholder:text-white/70"
-  );
-  textAreaInput.classList.replace(
-    "placeholder:text-white/0",
-    "placeholder:text-white/70"
-  );
+  let selectedId = document.getElementById("selectedId").innerHTML;
+
+  console.log(titleInput.value);
+  console.log(textAreaInput.value);
+  console.log(selectedId);
+  fetch(API_ENDPOINT + "/" + selectedId, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: titleInput.value,
+      content: textAreaInput.value,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF8",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  // ERROR 415
 };
-document
-  .getElementById("title-input")
-  .addEventListener("input", unhidePlaceholder);
-document
-  .getElementById("textarea-input")
-  .addEventListener("input", unhidePlaceholder);

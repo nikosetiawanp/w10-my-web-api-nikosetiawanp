@@ -82,7 +82,6 @@
             type="text"
             id="title-input"
             placeholder="New Note"
-            onfocus="hideTitlePlaceholder()"
           />
           <textarea
             class="outline-none resize-none h-full bg-white/0 text-white font-medium placeholder:text-white/70"
@@ -90,12 +89,15 @@
             cols="30"
             rows="10"
             placeholder="What's on your mind?"
-            onfocus="hideTextareaPlaceholder()"
           ></textarea>
+          <p class="hidden" id="selectedId"></p>
           <button
             class="w-full bg-white/20 hover:bg-white/30 hover:shadow-md h-14 rounded-lg text-white font-bold"
+            onclick="updateNote()"
+            id="update-button"
+            buttonid=""
           >
-            Save Note
+            Update Note
           </button>
         </div>
       </div>
