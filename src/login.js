@@ -41,7 +41,6 @@ let checkUserExist = () => {
       let userID = registeredEmail.id;
       let userName = registeredEmail.name;
 
-      console.log(registeredEmail.id);
       if (registeredEmail === undefined || registeredPassword === undefined) {
         loginError.innerHTML = "Invalid Email / Password";
         loginError.classList.replace("text-gray-400", "text-red-500");
@@ -60,7 +59,7 @@ let authenticateLogin = () => {
   checkEmptyEmail();
   checkEmptyPassword();
   if (checkEmptyEmail() === false || checkEmptyPassword === false) {
-    console.log(false);
+    return false;
   } else checkUserExist();
 };
 loginButton.addEventListener("click", authenticateLogin);
