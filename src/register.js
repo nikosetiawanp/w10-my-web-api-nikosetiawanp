@@ -105,7 +105,7 @@ let checkEmailExist = () => {
       if (registeredEmail !== undefined) {
         registerError.classList.replace("text-gray-400", "text-red-500");
         registerEmail.classList.replace("border-gray-200", "border-red-500");
-        registerError.innerHTML = "Email already exist";
+        registerError.innerHTML = "Email already registered";
       } else {
         createNewUser();
         alert("Register successful! Redirecting soon...");

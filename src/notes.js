@@ -107,7 +107,10 @@ let editNote = (e) => {
   let titleInput = document.getElementById("title-input");
   let textAreaInput = document.getElementById("textarea-input");
   let rightContainer = document.getElementById("right-container");
+  let updateButton = document.getElementById("update-button");
+
   rightContainer.classList.replace("hidden", "flex");
+  updateButton.innerHTML = "Save Note";
 
   fetch(API_ENDPOINT + "/" + noteId)
     .then((response) => response.json())
@@ -121,6 +124,7 @@ let editNote = (e) => {
 const updateNote = () => {
   let titleInput = document.getElementById("title-input");
   let textAreaInput = document.getElementById("textarea-input");
+  let updateButton = document.getElementById("update-button");
   let userID = localStorage.getItem("userID");
   let cardID = localStorage.getItem("cardID");
 
@@ -136,6 +140,11 @@ const updateNote = () => {
     }),
   })
     .then((response) => response.json())
-    .then((note) => showAllNote());
+    .then((note) => {
+      showAllNote();
+      updateButton.innerHTML = "Saved";
+      titleInput.value = `${note.title}`;
+      textAreaInput.value = `${note.content}`;
+    });
   // ERROR 415
 };
