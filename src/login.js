@@ -38,6 +38,10 @@ let checkUserExist = () => {
       let registeredPassword = user.find(
         (e) => e.password === loginPassword.value
       );
+      let userID = registeredEmail.id;
+      let userName = registeredEmail.name;
+
+      console.log(registeredEmail.id);
       if (registeredEmail === undefined || registeredPassword === undefined) {
         loginError.innerHTML = "Invalid Email / Password";
         loginError.classList.replace("text-gray-400", "text-red-500");
@@ -45,6 +49,8 @@ let checkUserExist = () => {
         loginError.innerHTML = "Invalid Email / Password";
         loginError.classList.replace("text-gray-400", "text-red-500");
       } else {
+        localStorage.setItem("userID", `${userID}`);
+        localStorage.setItem("userName", `${userName}`);
         alert("Login successful! Redirecting soon...");
         window.location.href = "./notes.html";
       }

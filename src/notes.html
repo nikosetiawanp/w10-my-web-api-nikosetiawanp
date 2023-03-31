@@ -25,7 +25,7 @@
       >
         <!-- Notes and plus button -->
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-8xl text-white font-bold">Notes</h1>
+          <h1 class="text-6xl text-white font-bold" id="title">Notes</h1>
           <button
             class="w-12 h-12 hover:backdrop-blur-sm hover:bg-white/20 hover:shadow-md active:shadow-none flex justify-center items-center rounded-lg"
             id="plus-button"
@@ -90,7 +90,6 @@
             rows="10"
             placeholder="What's on your mind?"
           ></textarea>
-          <p class="hidden" id="selectedId"></p>
           <button
             class="w-full bg-white/20 hover:bg-white/30 hover:shadow-md h-14 rounded-lg text-white font-bold"
             onclick="updateNote()"
