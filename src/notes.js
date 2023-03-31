@@ -106,6 +106,8 @@ let editNote = (e) => {
   const noteId = e.getAttribute("noteid");
   let titleInput = document.getElementById("title-input");
   let textAreaInput = document.getElementById("textarea-input");
+  let rightContainer = document.getElementById("right-container");
+  rightContainer.classList.replace("hidden", "flex");
 
   fetch(API_ENDPOINT + "/" + noteId)
     .then((response) => response.json())
